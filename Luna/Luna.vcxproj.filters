@@ -27,9 +27,15 @@
     <ClInclude Include="src\Luna\EntryPoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Luna\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Luna\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Luna\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
