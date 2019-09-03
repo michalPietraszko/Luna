@@ -1,7 +1,9 @@
 # Directories
 .vs/
-bin/
+.vscode/
+bin/Debug-windows-x86_64
 bin-int/
 
 # Files
 *.user
+*.code-workspace

@@ -1,42 +1,31 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Luna">
+      <UniqueIdentifier>{95BC887C-81F3-890D-2AE0-6F1016F6050F}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Luna\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\Luna.h" />
     <ClInclude Include="src\Luna\Application.h">
-      <Filter>Header Files</Filter>
+      <Filter>Luna</Filter>
     </ClInclude>
-    <ClInclude Include="src\Luna.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\Luna\Core.h">
+      <Filter>Luna</Filter>
     </ClInclude>
     <ClInclude Include="src\Luna\EntryPoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>Luna</Filter>
     </ClInclude>
     <ClInclude Include="src\Luna\Log.h">
-      <Filter>Header Files</Filter>
+      <Filter>Luna</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Luna\Application.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Luna</Filter>
     </ClCompile>
     <ClCompile Include="src\Luna\Log.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Luna</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
