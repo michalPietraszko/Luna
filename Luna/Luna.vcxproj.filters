@@ -4,6 +4,9 @@
     <Filter Include="Luna">
       <UniqueIdentifier>{95BC887C-81F3-890D-2AE0-6F1016F6050F}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Luna\Events">
+      <UniqueIdentifier>{D9CEA3B9-4584-1CAF-CE78-16863A2D13B3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Luna.h" />
@@ -15,6 +18,18 @@
     </ClInclude>
     <ClInclude Include="src\Luna\EntryPoint.h">
       <Filter>Luna</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Luna\Events\ApplicationEvent.h">
+      <Filter>Luna\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Luna\Events\Event.h">
+      <Filter>Luna\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Luna\Events\KeyEvent.h">
+      <Filter>Luna\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Luna\Events\MouseEvent.h">
+      <Filter>Luna\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\Luna\Log.h">
       <Filter>Luna</Filter>
