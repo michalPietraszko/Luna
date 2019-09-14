@@ -1,4 +1,5 @@
 #pragma once 
+#include "lnpch.h"
 
 // todo change include 
 #include "Luna/Core.h"

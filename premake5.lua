@@ -10,6 +10,12 @@ workspace "Luna"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "Luna/vendor/GLFW/include"
+
+include "Luna/vendor/GLFW"
+
 project "Luna"
     location "Luna"
     kind "SharedLib"
@@ -20,7 +26,7 @@ project "Luna"
 
     pchheader "lnpch.h"
     pchsource "Luna/src/lnpch.cpp"
-    
+
     files
     {
         "%{prj.name}/src/**.h",
@@ -30,7 +36,14 @@ project "Luna"
     includedirs
     {
         "%{prj.name}/src",
-        "%{prj.name}/vendor/spdlog/include"
+        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.GLFW}"
+    }
+    
+    links
+    {
+        "GLFW",
+        "opengl32.lib"
     }
 
     filter "system:windows"
