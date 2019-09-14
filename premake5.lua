@@ -18,6 +18,9 @@ project "Luna"
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    pchheader "lnpch.h"
+    pchsource "Luna/src/lnpch.cpp"
+    
     files
     {
         "%{prj.name}/src/**.h",

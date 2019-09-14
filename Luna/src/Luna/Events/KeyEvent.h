@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Luna
 {
 	class LUNA_API KeyEvent : public Event 

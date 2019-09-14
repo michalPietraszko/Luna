@@ -3,9 +3,6 @@
 // todo change include 
 #include "Luna/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Luna
 {
 	enum class EventType
