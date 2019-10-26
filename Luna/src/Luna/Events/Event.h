@@ -29,7 +29,7 @@ namespace Luna
 							virtual EventType getEventType() const override { return getStaticType(); } \
 							virtual const char* getName() const override { return #type; }
 
-#define EVENT_CLASS_CATEGORY(category) virtual int getCategoryFlags() const override { return category; }
+#define 	EVENT_CLASS_CATEGORY(category) virtual int getCategoryFlags() const override { return category; }
 
 	class LUNA_API Event 
  	{
@@ -51,19 +51,19 @@ namespace Luna
 		bool m_Handled = false;
 	};
 
-	class EvenDispatcher 
+	class EventDispatcher 
 	{
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
 
 	public:
-		EvenDispatcher(Event& event)
+		EventDispatcher(Event& event)
 			: m_Event(event) {}
 		
 		template<typename T>
 		bool dispatch(EventFn<T> func) 
 		{
-			if (m_Event.getEventType() == T::GetStaticType()) 
+			if (m_Event.getEventType() == T::getStaticType()) 
 			{
 				m_Event.m_Handled = func(*reinterpret_cast<T*>(&m_Event));
 				return true;
