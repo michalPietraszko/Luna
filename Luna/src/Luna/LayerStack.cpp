@@ -1,31 +1,26 @@
 #include "lnpch.h"
-#include "LayerStack.h"
+#include "LayerStack.hpp"
 
 namespace Luna
 {
 
-LayerStack::~LayerStack()
-{
-    for (auto layer : m_Layers)
-        delete layer;
-}
-
-LayerProxy LayerStack::PushLayer(UniqueLayerPtr layer)
+LayerStack::LayerProxy LayerStack::pushLayer(UniqueLayerPtr layer)
 {
     m_LayerInsert = m_Layers.insert(m_LayerInsert, std::move(layer));
-    return std::prev(m_Layers.cend());
+	return  { m_LayerInsert };
 }
 
-LayerProxy LayerStack::PushOverlay(UniqueLayerPtr overlay)
+LayerStack::LayerProxy LayerStack::pushOverlay(UniqueLayerPtr overlay)
 {
-    m_Layers.push_back(overlay);
+    m_Layers.push_back(std::move(overlay));
+	return { std::prev(m_Layers.end()) };
 }
 
-void pop(LayerProxy&& layerProxy)
+void LayerStack::pop(LayerProxy&& layerProxy)
 {
     if(not layerProxy.isValid) return;
 
-    if(m_LayerStack.end() == m_LayerStack.erase(layerProxy.layer))
+    if(m_Layers.end() == m_Layers.erase(layerProxy.m_Layer))
     {
         LN_CORE_ERROR("Poping layer that is not in stack!");
     }

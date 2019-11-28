@@ -2,7 +2,6 @@
 
 #include "Luna/Core.h"
 #include "Luna/Events/Event.h"
-#include "Luna/Layer.h"
 
 namespace Luna 
 {

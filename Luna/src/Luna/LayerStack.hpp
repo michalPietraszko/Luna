@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Luna/Core.h"
-#include "Layer.h"
+#include "Layer.hpp"
 #include <vector>
 
 namespace Luna 
@@ -21,16 +21,17 @@ namespace Luna
 		*/
 		class LayerProxy
 		{
+		public:
 			LayerProxy() = delete;
 			LayerProxy(const LayerProxy&) = delete;
-			LayerProxy(LayerProxy&& other) : m_Layer{std::move(other.m_Layer)}, isValid {other.isValid};
+			LayerProxy(LayerProxy&& other) : m_Layer{other.m_Layer}, isValid {other.isValid}
 			{
 				other.isValid = false; 
 			}
 			LayerProxy& operator=(const LayerProxy&) = delete;
-			LayerProxy& operator=(LayerProxy&&) 
+			LayerProxy& operator=(LayerProxy&& other) 
 			{
-				m_Layer = std::move(other.m_Layer)}; 
+				m_Layer = other.m_Layer; 
 				isValid = other.isValid;
 				other.isValid = false; 
 			}
@@ -38,16 +39,16 @@ namespace Luna
 
 		private:
 			friend class LayerStack;
-			LayerProxy(Layers::const_iterator&& layer) : m_Layer{std::move(layer)} {}
-			const Layers::const_iterator m_Layer;
-			isValid{true};
+			LayerProxy(Layers::iterator layer) : m_Layer{layer} {}
+			Layers::iterator m_Layer;
+			bool isValid{true};
 		};
 
 	private:
 		LayerStack() { m_Layers.reserve(initialLayersCapacity);}
 
 	public:
-		~LayerStack();
+		~LayerStack() = default;
 		static LayerStack& instance() 
 		{
 			static LayerStack stack;
@@ -67,7 +68,7 @@ namespace Luna
 
 	private:
 		Layers m_Layers{};
-		Layers::const_iterator m_LayerInsert{m_Layers.cbegin()};
+		Layers::iterator m_LayerInsert{m_Layers.begin()};
 	};
 
 }// namespace Luna

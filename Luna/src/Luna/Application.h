@@ -1,9 +1,10 @@
 #pragma once
 #include "Core.h"
 #include "Luna/Events/ApplicationEvent.h"
-#include "Luna/LayerStack.h"
+#include "Luna/LayerStack.hpp"
 #include "Luna/Events/Event.h"
 #include "Luna/Events/ApplicationEvent.h"
+#include "Window.h"
 
 namespace Luna
 {

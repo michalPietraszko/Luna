@@ -30,13 +30,13 @@ namespace Luna
 	// inline
 	void Application::pushLayer(std::unique_ptr<Layer> layer)
  	{
- 		m_LayerStack.PushLayer(std::move(layer));
+ 		m_LayerStack.pushLayer(std::move(layer));
  	}
 
 	// inline
-  	void Application::PushOverlay(std::unique_ptr<Layer> layer)
+  	void Application::pushOverlay(std::unique_ptr<Layer> layer)
  	{
- 		m_LayerStack.PushOverlay(std::move(layer));
+ 		m_LayerStack.pushOverlay(std::move(layer));
  	}
 
 	void Application::run()
