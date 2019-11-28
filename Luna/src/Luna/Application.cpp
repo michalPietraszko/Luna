@@ -9,7 +9,7 @@ namespace Luna
 {	
 	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
-	Application::Application() 
+	Application::Application()  : m_LayerStack{LayerStack::instance()}
 	{
 		m_Window = std::unique_ptr<Window>(Window::create());
 		m_Window -> setEventCallback(BIND_EVENT_FN(onEvent));
@@ -26,6 +26,18 @@ namespace Luna
 
 		LN_CORE_TRACE("{0}", e);
 	}
+
+	// inline
+	void Application::pushLayer(std::unique_ptr<Layer> layer)
+ 	{
+ 		m_LayerStack.PushLayer(std::move(layer));
+ 	}
+
+	// inline
+  	void Application::PushOverlay(std::unique_ptr<Layer> layer)
+ 	{
+ 		m_LayerStack.PushOverlay(std::move(layer));
+ 	}
 
 	void Application::run()
 	{	

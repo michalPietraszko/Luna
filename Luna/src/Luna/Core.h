@@ -1,6 +1,10 @@
 #pragma once
 
 #ifdef LN_PLATFORM_WINDOWS
+	#define not !
+	#define and &&
+	#define or || 
+	
 	#ifdef LN_BUILD_DLL
 		#define LUNA_API __declspec(dllexport)
 	#else
