@@ -24,20 +24,26 @@ namespace Luna
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
 
-		auto it = m_LayerStack.end();
-		auto it2 = m_LayerStack.begin();
+		if (test) {
+			popLayer(std::move(prx));
+			std::cout << "dw9iuahidjwo" << std::endl;
+		}
 
-		(*it2)->onEvent(e);
-		//std::string i{"chuj"};
-		//(*it2)->kupa(i);
-	/*	for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
+		static int counter = 0;
+		test = false;
+
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
 			(*--it)->onEvent(e);
-			if (e.m_Handled)
-				break;
-		}*/
+			counter++;
+			if (counter == 10)
+				test = true;
 
-		LN_CORE_TRACE("{0}", e);
+			if (e.m_Handled) 
+			{
+				break;
+			}
+		}
 	}
 
 	// inline
@@ -54,9 +60,6 @@ namespace Luna
 
 	void Application::run()
 	{	
-		// WindowResizeEvent e(1280, 720);
-		// LN_TRACE(e);
-		
 		while (m_Running)
 		{	
 			glClearColor(1, 0, 1, 1);

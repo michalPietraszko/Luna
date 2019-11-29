@@ -27,6 +27,9 @@ void LayerStack::pop(LayerProxy&& layerProxy)
     if(result == m_Layers.cend())
     {
         LN_CORE_ERROR("Poping layer that is not in stack!");
+		return;
     }
+
+	m_Layers.erase(result);
 }
 } // namespace Hazel

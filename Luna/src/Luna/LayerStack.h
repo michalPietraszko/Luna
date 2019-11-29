@@ -27,6 +27,7 @@ namespace Luna
 		class LUNA_API LayerProxy 
 		{
 		public:
+			LayerProxy() = default;
 			LayerProxy(const LayerProxy&) = delete;
 			LayerProxy(LayerProxy&& other) noexcept : m_Layer{ other.m_Layer }, isValid{ other.isValid }
 			{
@@ -47,9 +48,9 @@ namespace Luna
 
 		private:
 			friend class LayerStack;
-			LayerProxy(Layers::iterator layer) : m_Layer{ layer->get() } {}
-			const Layer* m_Layer;
-			bool isValid{ true };
+			LayerProxy(Layers::iterator layer) : m_Layer{ layer->get() }, isValid{true} {}
+			const Layer* m_Layer{ nullptr };
+			bool isValid{ false };
 		};
 
 		LayerStack(const LayerStack &) = delete;
