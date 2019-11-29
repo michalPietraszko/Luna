@@ -46,8 +46,7 @@ namespace Luna
 		{
 			return getCategoryFlags() & category;
 		}
-	
-	protected:
+		
 		bool m_Handled = false;
 	};
 
@@ -79,6 +78,5 @@ namespace Luna
 	{
 		return os << event.toString();
 	}
-
 	
 } // namespace Luna

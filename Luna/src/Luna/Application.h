@@ -1,7 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Luna/Events/ApplicationEvent.h"
-#include "Luna/LayerStack.hpp"
+#include "Luna/LayerStack.h"
 #include "Luna/Events/Event.h"
 #include "Luna/Events/ApplicationEvent.h"
 #include "Window.h"
@@ -15,8 +15,8 @@ public:
 	virtual ~Application();
 	void run();
 	void onEvent(Event& e);
-	void pushLayer(std::unique_ptr<Layer> layer);
-	void pushOverlay(std::unique_ptr<Layer> layer);
+	LayerStack::LayerProxy pushLayer(std::unique_ptr<Layer> layer);
+	LayerStack::LayerProxy pushOverlay(std::unique_ptr<Layer> layer);
 	
 private:
 	bool onWindowClose(WindowCloseEvent& e);
