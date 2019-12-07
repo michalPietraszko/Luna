@@ -64,14 +64,17 @@ project "Luna"
     
     filter "configurations:Debug"
         defines "LN_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "LN_RELEASE"
+        buildoptions "/MD"
         symbols "On"
 
     filter "configurations:Dist"
         defines "LN_DIST"
+        buildoptions "/MD"
         symbols "On"
 
 project "Sandbox"
@@ -111,12 +114,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "LN_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "LN_RELEASE"
+        buildoptions "/MD"
         symbols "On"
 
     filter "configurations:Dist"
         defines "LN_DIST"
+        buildoptions "/MD"
         symbols "On"

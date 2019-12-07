@@ -24,21 +24,9 @@ namespace Luna
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT_FN(onWindowClose));
 
-		if (test) {
-			popLayer(std::move(prx));
-			std::cout << "dw9iuahidjwo" << std::endl;
-		}
-
-		static int counter = 0;
-		test = false;
-
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{
 			(*--it)->onEvent(e);
-			counter++;
-			if (counter == 10)
-				test = true;
-
 			if (e.m_Handled) 
 			{
 				break;
@@ -47,16 +35,16 @@ namespace Luna
 	}
 
 	// inline
-	LayerStack::LayerProxy Application::pushLayer(std::unique_ptr<Layer> layer)
- 	{
-		return m_LayerStack.pushLayer(std::move(layer));
- 	}
-
-	// inline
 	LayerStack::LayerProxy Application::pushOverlay(std::unique_ptr<Layer> layer)
  	{
  		return m_LayerStack.pushOverlay(std::move(layer));
  	}
+
+	// inline
+	LayerStack::LayerProxy Application::pushLayer(std::unique_ptr<Layer> layer)
+	{
+		return m_LayerStack.pushLayer(std::move(layer));
+	}
 
 	void Application::run()
 	{	

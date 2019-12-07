@@ -16,8 +16,7 @@ namespace Luna
 
 		LayerStack() 
 		{
-			m_Layers.reserve(initialLayersCapacity); 
-			m_LayerInsert = m_Layers.begin();
+			m_Layers.reserve(initialLayersCapacity);
 		}
 
 	public:
@@ -66,14 +65,15 @@ namespace Luna
 		}
 
 		LayerProxy pushLayer(std::unique_ptr<Layer> layer);
-		LayerProxy pushOverlay(std::unique_ptr<Layer> layer);
+		LayerProxy pushOverlay(std::unique_ptr<Layer> overlay);
 		void pop(LayerProxy&& layerProxy);
+		
 		auto begin() { return m_Layers.begin(); }
 		auto end() { return m_Layers.end(); }
 
 	private:
 		Layers m_Layers{};
-		Layers::iterator m_LayerInsert{};
+		unsigned int m_LayerInsert{0u};
 	};
 
 }// namespace Luna
