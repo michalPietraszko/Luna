@@ -32,11 +32,10 @@ namespace Luna
 #define 	EVENT_CLASS_CATEGORY(category) virtual int getCategoryFlags() const override { return category; }
 
 	class LUNA_API Event 
- 	{
-		friend class EventDispatcher;
-	
+ 	{	
 	public:
 		// static EventType getStaticType() = 0;
+		bool m_Handled {false};
 		virtual EventType getEventType() const = 0;
 		virtual const char* getName() const = 0;
 		virtual int getCategoryFlags() const = 0;
@@ -46,9 +45,6 @@ namespace Luna
 		{
 			return getCategoryFlags() & category;
 		}
-	
-	protected:
-		bool m_Handled = false;
 	};
 
 	class EventDispatcher 
