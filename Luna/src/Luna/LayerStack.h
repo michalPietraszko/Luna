@@ -53,8 +53,8 @@ namespace Luna
 		};
 
 		LayerStack(const LayerStack &) = delete;
-		LayerStack& &operator=(const LayerStack &) = delete;
-		LayerStack& &operator=(LayerStack &&) = default;
+		LayerStack& operator=(const LayerStack &) = delete;
+		LayerStack& operator=(LayerStack &&) = default;
 		LayerStack(LayerStack &&) = default;
 		~LayerStack() = default;
 

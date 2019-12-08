@@ -7,8 +7,14 @@
     <Filter Include="Luna\Events">
       <UniqueIdentifier>{D9CEA3B9-4584-1CAF-CE78-16863A2D13B3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Luna\ImGui">
+      <UniqueIdentifier>{7F8DD3C7-6B45-1515-D44C-EE70C023B005}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -37,6 +43,9 @@
     <ClInclude Include="src\Luna\Events\MouseEvent.h">
       <Filter>Luna\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Luna\ImGui\ImGuiLayer.h">
+      <Filter>Luna\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Luna\Layer.h">
       <Filter>Luna</Filter>
     </ClInclude>
@@ -49,6 +58,9 @@
     <ClInclude Include="src\Luna\Window.h">
       <Filter>Luna</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -58,11 +70,17 @@
     <ClCompile Include="src\Luna\Application.cpp">
       <Filter>Luna</Filter>
     </ClCompile>
+    <ClCompile Include="src\Luna\ImGui\ImGuiLayer.cpp">
+      <Filter>Luna\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Luna\LayerStack.cpp">
       <Filter>Luna</Filter>
     </ClCompile>
     <ClCompile Include="src\Luna\Log.cpp">
       <Filter>Luna</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

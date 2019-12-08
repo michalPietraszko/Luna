@@ -23,6 +23,7 @@ class Sandbox : public Luna::Application
 public:
 	Sandbox() {
 		pushLayer(std::make_unique<ExampleLayer>());
+		pushOverlay(std::make_unique<Luna::ImGuiLayer>());
 	}
 	~Sandbox() {}
 };

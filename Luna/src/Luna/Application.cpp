@@ -3,14 +3,19 @@
 
 #include "Luna/Log.h"
 
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 namespace Luna
 {	
 	#define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
-	Application::Application()  : m_LayerStack{LayerStack::instance()}
+	Application* Application::s_Instance = nullptr;
+
+	Application::Application() : m_LayerStack{LayerStack::instance()}
 	{
+		LN_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::create());
 		m_Window -> setEventCallback(BIND_EVENT_FN(onEvent));
 	}
@@ -37,12 +42,14 @@ namespace Luna
 	// inline
 	LayerStack::LayerProxy Application::pushOverlay(std::unique_ptr<Layer> layer)
  	{
+		layer->onAttach();
  		return m_LayerStack.pushOverlay(std::move(layer));
  	}
 
 	// inline
 	LayerStack::LayerProxy Application::pushLayer(std::unique_ptr<Layer> layer)
 	{
+		layer->onAttach();
 		return m_LayerStack.pushLayer(std::move(layer));
 	}
 

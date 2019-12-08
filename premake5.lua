@@ -14,9 +14,11 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLFW"] = "Luna/vendor/GLFW/include"
 IncludeDir["Glad"] = "Luna/vendor/Glad/include"
+IncludeDir["ImGui"] = "Luna/vendor/imgui"
 
 include "Luna/vendor/GLFW"
 include "Luna/vendor/Glad"
+include "Luna/vendor/imgui"
 
 project "Luna"
     location "Luna"
@@ -40,13 +42,15 @@ project "Luna"
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
         "%{IncludeDir.GLFW}",
-        "%{IncludeDir.Glad}"
+        "%{IncludeDir.Glad}",
+        "%{IncludeDir.ImGui}"
     }
     
     links
     {
         "GLFW",
         "Glad",
+        "ImGui",
         "opengl32.lib"
     }
 
@@ -58,7 +62,8 @@ project "Luna"
         defines
         {
             "LN_PLATFORM_WINDOWS",
-            "LN_BUILD_DLL"
+            "LN_BUILD_DLL",
+            "GLFW_INCLUDE_NONE"
         }
 
         postbuildcommands

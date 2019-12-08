@@ -5,6 +5,8 @@
 #include "Luna/Events/MouseEvent.h"
 #include "Luna/Events/KeyEvent.h"
 
+#include <glad/glad.h>
+
 namespace Luna {
 
 	static bool s_GLFWInitialized = false;
@@ -135,6 +137,10 @@ namespace Luna {
 							        m_Data.title.c_str(), monitor, share);
 
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		LN_CORE_ASSERT(status, "Failed to initialize Glad!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		setVSync(true);
 
