@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 -- Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "Luna/vendor/GLFW/include"
+IncludeDir["Glad"] = "Luna/vendor/Glad/include"
 
 include "Luna/vendor/GLFW"
+include "Luna/vendor/Glad"
 
 project "Luna"
     location "Luna"
@@ -37,18 +39,20 @@ project "Luna"
     {
         "%{prj.name}/src",
         "%{prj.name}/vendor/spdlog/include",
-        "%{IncludeDir.GLFW}"
+        "%{IncludeDir.GLFW}",
+        "%{IncludeDir.Glad}"
     }
     
     links
     {
         "GLFW",
+        "Glad",
         "opengl32.lib"
     }
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
+        staticruntime "Off"
         systemversion "latest"
 
         defines
