@@ -64,7 +64,7 @@ namespace Luna {
 		Application& app = Application::get();
 		io.DisplaySize = ImVec2(app.getWindow().getWidth(), app.getWindow().getHeight());
 
-		float time = (float)glfwGetTime();
+		const auto time = static_cast<float>(glfwGetTime());
 		io.DeltaTime = m_Time > 0.0f ? (time - m_Time) : (1.0f / 60.0f);
 		m_Time = time;
 

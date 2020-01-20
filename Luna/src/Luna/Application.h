@@ -20,9 +20,10 @@ public:
 	static Application& get() { return *s_Instance; }
 
 protected:
-	LayerStack::LayerProxy pushLayer(std::unique_ptr<Layer> layer);
-	LayerStack::LayerProxy pushOverlay(std::unique_ptr<Layer> layer);
-	void popLayer(LayerStack::LayerProxy&& prx) { m_LayerStack.pop(std::move(prx)); }
+	LayerStack::const_iterator pushLayer(std::unique_ptr<Layer> layer);
+	LayerStack::const_iterator pushOverlay(std::unique_ptr<Layer> layer);
+	void popLayer(LayerStack::const_iterator&& prx) { m_LayerStack.popLayer(std::move(prx)); }
+	void popoverlay(LayerStack::const_iterator&& prx) { m_LayerStack.popOverlay(std::move(prx)); }
 
 private:
 	bool onWindowClose(WindowCloseEvent& e);

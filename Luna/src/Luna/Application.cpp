@@ -40,14 +40,14 @@ namespace Luna
 	}
 
 	// inline
-	LayerStack::LayerProxy Application::pushOverlay(std::unique_ptr<Layer> layer)
+	LayerStack::const_iterator Application::pushOverlay(std::unique_ptr<Layer> layer)
  	{
 		layer->onAttach();
  		return m_LayerStack.pushOverlay(std::move(layer));
  	}
 
 	// inline
-	LayerStack::LayerProxy Application::pushLayer(std::unique_ptr<Layer> layer)
+	LayerStack::const_iterator Application::pushLayer(std::unique_ptr<Layer> layer)
 	{
 		layer->onAttach();
 		return m_LayerStack.pushLayer(std::move(layer));
