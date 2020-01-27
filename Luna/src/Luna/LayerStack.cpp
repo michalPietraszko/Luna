@@ -18,7 +18,7 @@ namespace Luna
 
 	void LayerStack::popLayer(LayerStack::const_iterator layer)
 	{
-		m_LayerInsert = std::prev(m_LayerInsert);
+		m_LayerInsert = std::prev(m_LayerInsert); // FIXME, undefined behavior
 		m_Layers.erase(layer);
 	}
 
