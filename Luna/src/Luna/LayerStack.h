@@ -20,12 +20,15 @@ namespace Luna
 		// use naked iterators to pop layers
 	
 	protected:
-		LayerStack()
-		{
-			m_LayerInsert = m_Layers.cend();
-		};
+		LayerStack() : m_LayerInsert{m_Layers.cend()} {}
 
 	public:
+		static LayerStack& instanceImpl() 
+		{
+			static LayerStack stack;
+			return stack;
+		}
+
 		using const_iterator = Layers::const_iterator;
 
 		~LayerStack() = default;
@@ -33,12 +36,6 @@ namespace Luna
 		LayerStack& operator=(const LayerStack&) = delete;
 		LayerStack& operator=(LayerStack&&) = default;
 		LayerStack(LayerStack&&) = default;
-
-		static LayerStack& instance() 
-		{
-			static LayerStack stack;
-			return stack;
-		}
 
 		const_iterator pushLayer(std::unique_ptr<Layer> layer);
 		const_iterator pushOverlay(std::unique_ptr<Layer> overlay);
@@ -48,8 +45,16 @@ namespace Luna
 
 		auto begin() { return m_Layers.begin(); }
 		auto end() { return m_Layers.end(); }
+		static LayerStack& instance() {	return cachedRef; }
 
 	private:
+		void decLayerInserter()
+		{
+			m_Layers.size() == 1 ? m_LayerInsert = m_Layers.cend() : m_LayerInsert = std::prev(m_LayerInsert);
+		}
+
+	private:
+		static LayerStack& cachedRef;
 		Layers m_Layers{};
 		const_iterator m_LayerInsert{};
 	};

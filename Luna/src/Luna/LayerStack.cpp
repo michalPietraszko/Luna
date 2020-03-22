@@ -3,6 +3,8 @@
 
 namespace Luna
 {
+	LayerStack& LayerStack::cachedRef = LayerStack::instanceImpl();
+
 	LayerStack::const_iterator LayerStack::pushLayer(std::unique_ptr<Layer> layer)
 	{
 		auto insertPos = m_Layers.insert(m_LayerInsert, std::move(layer));
@@ -18,7 +20,7 @@ namespace Luna
 
 	void LayerStack::popLayer(LayerStack::const_iterator layer)
 	{
-		m_LayerInsert = std::prev(m_LayerInsert); // FIXME, undefined behavior
+		decLayerInserter();
 		m_Layers.erase(layer);
 	}
 

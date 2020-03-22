@@ -20,6 +20,8 @@ include "Luna/vendor/GLFW"
 include "Luna/vendor/Glad"
 include "Luna/vendor/imgui"
 
+startproject "Sandbox"
+
 project "Luna"
     location "Luna"
     kind "SharedLib"
