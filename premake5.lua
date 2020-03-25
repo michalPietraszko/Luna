@@ -1,5 +1,6 @@
 workspace "Luna"
     architecture "x64"
+    startproject "Sandbox"
 
     configurations
     {
@@ -19,8 +20,6 @@ IncludeDir["ImGui"] = "Luna/vendor/imgui"
 include "Luna/vendor/GLFW"
 include "Luna/vendor/Glad"
 include "Luna/vendor/imgui"
-
-startproject "Sandbox"
 
 project "Luna"
     location "Luna"
