@@ -27,3 +27,5 @@
 #endif
 
 #define BIT(x) (1 << x)
+
+#define ln_bind_event_function(fn) bind(&fn, this, std::placeholders::_1)
