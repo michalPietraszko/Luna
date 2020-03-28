@@ -3,29 +3,29 @@
 
 namespace Luna
 {
-	LayerStack& LayerStack::cachedRef = LayerStack::instanceImpl();
+LayerStack& LayerStack::cachedRef = LayerStack::instanceImpl();
 
-	LayerStack::const_iterator LayerStack::pushLayer(std::unique_ptr<Layer> layer)
-	{
-		auto insertPos = m_Layers.insert(m_LayerInsert, std::move(layer));
+LayerStack::const_iterator LayerStack::pushLayer(std::unique_ptr<Layer> layer)
+{
+    auto insertPos = m_Layers.insert(m_LayerInsert, std::move(layer));
 
-		m_LayerInsert = std::next(insertPos);
-		return insertPos;
-	}
+    m_LayerInsert = std::next(insertPos);
+    return insertPos;
+}
 
-	LayerStack::const_iterator LayerStack::pushOverlay(std::unique_ptr<Layer> overlay)
-	{
-	    return m_Layers.insert(m_Layers.end(), std::move(overlay));
-	}
+LayerStack::const_iterator LayerStack::pushOverlay(std::unique_ptr<Layer> overlay)
+{
+    return m_Layers.insert(m_Layers.end(), std::move(overlay));
+}
 
-	void LayerStack::popLayer(LayerStack::const_iterator layer)
-	{
-		decLayerInserter();
-		m_Layers.erase(layer);
-	}
+void LayerStack::popLayer(LayerStack::const_iterator layer)
+{
+    decLayerInserter();
+    m_Layers.erase(layer);
+}
 
-	void LayerStack::popOverlay(LayerStack::const_iterator overlay)
-	{
-		m_Layers.erase(overlay);
-	}
-} // namespace Hazel
+void LayerStack::popOverlay(LayerStack::const_iterator overlay)
+{
+    m_Layers.erase(overlay);
+}
+} // namespace Luna

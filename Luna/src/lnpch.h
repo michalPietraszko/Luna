@@ -15,5 +15,5 @@
 #include "Luna/Log.h"
 
 #ifdef LN_PLATFORM_WINDOWS
-	#include <Windows.h>
+#include <Windows.h>
 #endif
