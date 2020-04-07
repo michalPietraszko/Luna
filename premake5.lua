@@ -17,14 +17,18 @@ IncludeDir["GLFW"] = "Luna/vendor/GLFW/include"
 IncludeDir["Glad"] = "Luna/vendor/Glad/include"
 IncludeDir["ImGui"] = "Luna/vendor/imgui"
 
-include "Luna/vendor/GLFW"
-include "Luna/vendor/Glad"
-include "Luna/vendor/imgui"
+group "Dependencies"
+ 	include "Luna/vendor/GLFW"
+ 	include "Luna/vendor/Glad"
+ 	include "Luna/vendor/imgui"
+
+ group ""
 
 project "Luna"
     location "Luna"
     kind "SharedLib"
     language "C++"
+    staticruntime "off"
 
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -57,7 +61,6 @@ project "Luna"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "Off"
         systemversion "latest"
 
         defines
@@ -69,28 +72,29 @@ project "Luna"
 
         postbuildcommands
         {
-            ("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
         }
     
     filter "configurations:Debug"
         defines "LN_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "LN_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
 
     filter "configurations:Dist"
         defines "LN_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"    
     language "C++"
+    staticruntime "off"
 
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -114,7 +118,6 @@ project "Sandbox"
 
     filter "system:windows"
         cppdialect "C++17"
-        staticruntime "On"
         systemversion "latest"
 
         defines
@@ -124,15 +127,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "LN_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "LN_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
 
     filter "configurations:Dist"
         defines "LN_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         symbols "On"
