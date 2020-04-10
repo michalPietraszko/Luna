@@ -2,7 +2,7 @@
 #include "Application.h"
 
 #include "Luna/Log.h"
-
+#include "Input.h"
 #include <glad/glad.h>
 
 namespace Luna
