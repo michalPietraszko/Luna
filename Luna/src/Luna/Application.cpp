@@ -18,6 +18,10 @@ Application::Application() : m_LayerStack{LayerStack::instance()}
 
     m_Window = std::unique_ptr<Window>(Window::create());
     m_Window->setEventCallback(BIND_EVENT_FN(onEvent));
+
+    auto temp = std::make_unique<ImGuiLayer>();
+    m_ImGuiLayer = temp.get();
+    pushOverlay(std::move(temp));
 }
 
 Application::~Application() {}
@@ -60,6 +64,11 @@ void Application::run()
 
         for (auto&& layer : m_LayerStack)
             layer->onUpdate();
+
+        m_ImGuiLayer->begin();
+        for (auto&& layer : m_LayerStack)
+            layer->onImGuiRender();
+        m_ImGuiLayer->end();
 
         m_Window->onUpdate();
     }

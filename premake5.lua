@@ -113,6 +113,7 @@ project "Sandbox"
     {
         "Luna/vendor/spdlog/include",
         "Luna/src",
+        "Luna/vendor",
         "%{IncludeDir.glm}"
     }
 
