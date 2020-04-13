@@ -19,17 +19,18 @@ IncludeDir["ImGui"] = "Luna/vendor/imgui"
 IncludeDir["glm"] = "Luna/vendor/glm"
 
 group "Dependencies"
- 	include "Luna/vendor/GLFW"
- 	include "Luna/vendor/Glad"
- 	include "Luna/vendor/imgui"
+     include "Luna/vendor/GLFW"
+     include "Luna/vendor/Glad"
+     include "Luna/vendor/imgui"
 
  group ""
 
 project "Luna"
     location "Luna"
-    kind "SharedLib"
+    kind "StaticLib"
     language "C++"
-    staticruntime "off"
+    cppdialect "C++17"
+    staticruntime "on"
 
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -43,6 +44,11 @@ project "Luna"
         "%{prj.name}/src/**.cpp",
         "%{prj.name}/vendor/glm/glm/**.hpp",
         "%{prj.name}/vendor/glm/glm/**.inl"
+    }
+
+    defines
+    {
+        "_CRT_SECURE_NO_WARNINGS"
     }
 
     includedirs
@@ -64,7 +70,6 @@ project "Luna"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
 
         defines
@@ -73,32 +78,28 @@ project "Luna"
             "LN_BUILD_DLL",
             "GLFW_INCLUDE_NONE"
         }
-
-        postbuildcommands
-        {
-            ("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
-        }
     
     filter "configurations:Debug"
         defines "LN_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "LN_RELEASE"
         runtime "Release"
-        symbols "On"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "LN_DIST"
         runtime "Release"
-        symbols "On"
+        optimize "on"
 
 project "Sandbox"
     location "Sandbox"
     kind "ConsoleApp"    
     language "C++"
-    staticruntime "off"
+        cppdialect "C++17"
+    staticruntime "on"
 
     targetdir("bin/" .. outputdir .. "/%{prj.name}")
     objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,7 +124,6 @@ project "Sandbox"
     }
 
     filter "system:windows"
-        cppdialect "C++17"
         systemversion "latest"
 
         defines
@@ -134,14 +134,14 @@ project "Sandbox"
     filter "configurations:Debug"
         defines "LN_DEBUG"
         runtime "Debug"
-        symbols "On"
+        symbols "on"
 
     filter "configurations:Release"
         defines "LN_RELEASE"
         runtime "Release"
-        symbols "On"
+        optimize "on"
 
     filter "configurations:Dist"
         defines "LN_DIST"
         runtime "Release"
-        symbols "On"
+        optimize "on"

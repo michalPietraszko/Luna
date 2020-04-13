@@ -13,9 +13,9 @@ public:
 
     virtual void onImGuiRender() override
     {
-        // ImGui::Begin("Test");
-        // ImGui::Text("Text");
-        // ImGui::End();
+        ImGui::Begin("Test");
+        ImGui::Text("Tjnjjext");
+        ImGui::End();
     }
 
     void onEvent(Luna::Event& event) override
