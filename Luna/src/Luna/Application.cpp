@@ -44,14 +44,12 @@ void Application::onEvent(Event& e)
 // inline
 LayerStack::const_iterator Application::pushOverlay(std::unique_ptr<Layer> layer)
 {
-    layer->onAttach();
     return m_LayerStack.pushOverlay(std::move(layer));
 }
 
 // inline
 LayerStack::const_iterator Application::pushLayer(std::unique_ptr<Layer> layer)
 {
-    layer->onAttach();
     return m_LayerStack.pushLayer(std::move(layer));
 }
 

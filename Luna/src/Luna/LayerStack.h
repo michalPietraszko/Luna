@@ -20,7 +20,7 @@ class LUNA_API LayerStack
     // use naked iterators to pop layers
 
 protected:
-    LayerStack() : m_LayerInsert{m_Layers.cend()} {}
+    LayerStack() : m_LayerInsert{m_Layers.end()} {}
 
 public:
     static LayerStack& instanceImpl()
@@ -29,7 +29,7 @@ public:
         return stack;
     }
 
-    using const_iterator = Layers::const_iterator;
+    using const_iterator = Layers::iterator;
 
     ~LayerStack() = default;
     LayerStack(const LayerStack&) = delete;
@@ -50,7 +50,7 @@ public:
 private:
     void decLayerInserter()
     {
-        m_Layers.size() == 1 ? m_LayerInsert = m_Layers.cend() : m_LayerInsert = std::prev(m_LayerInsert);
+        m_Layers.size() == 1 ? m_LayerInsert = m_Layers.end() : m_LayerInsert = std::prev(m_LayerInsert);
     }
 
 private:
