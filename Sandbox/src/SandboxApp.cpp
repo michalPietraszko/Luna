@@ -14,6 +14,7 @@ public:
     virtual void onImGuiRender() override
     {
         ImGui::Begin("Test");
+        ImGui::SetWindowFontScale(2.0f);
         ImGui::Text("Tjnjjext");
         ImGui::End();
     }
@@ -24,7 +25,7 @@ public:
         {
             auto& e = (Luna::KeyPressedEvent&)event;
             if (e.getKeyCode() == LN_KEY_TAB) LN_TRACE("Tab key is pressed (event)!");
-                LN_TRACE("{0}", (char)e.getKeyCode());
+            LN_TRACE("{0}", (char)e.getKeyCode());
         }
     }
 };
@@ -32,10 +33,7 @@ public:
 class Sandbox : public Luna::Application
 {
 public:
-    Sandbox()
-    {
-        pushLayer(std::make_unique<ExampleLayer>());
-    }
+    Sandbox() { pushLayer(std::make_unique<ExampleLayer>()); }
     ~Sandbox() {}
 };
 

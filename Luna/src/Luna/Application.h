@@ -26,6 +26,8 @@ protected:
     void popLayer(LayerStack::const_iterator&& prx) { m_LayerStack.popLayer(std::move(prx)); }
     void popOverlay(LayerStack::const_iterator&& prx) { m_LayerStack.popOverlay(std::move(prx)); }
 
+    void openGLBs();
+
 private:
     bool onWindowClose(WindowCloseEvent& e);
 
@@ -37,6 +39,9 @@ private:
 
 private:
     static Application* s_Instance;
+    unsigned int m_VertexArray;
+    unsigned int m_VertexBuffer;
+    unsigned int m_IndexBuffer;
 };
 
 // To be defined in CLIENT

@@ -5,7 +5,7 @@
 #include "Luna/Events/MouseEvent.h"
 #include "Luna/Events/KeyEvent.h"
 
-#include <glad/glad.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 
 namespace Luna
 {
@@ -136,10 +136,8 @@ void WindowsWindow::init(const WindowProps& props)
     m_Window = glfwCreateWindow(
         static_cast<int>(props.width), static_cast<int>(props.height), m_Data.title.c_str(), monitor, share);
 
-    glfwMakeContextCurrent(m_Window);
-
-    int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-    LN_CORE_ASSERT(status, "Failed to initialize Glad!");
+    m_Context = new OpenGLContext(m_Window); // memory leak? run valgrind
+    m_Context->init();
 
     glfwSetWindowUserPointer(m_Window, &m_Data);
     setVSync(true);
@@ -156,7 +154,7 @@ void WindowsWindow::shutdown()
 void WindowsWindow::onUpdate()
 {
     glfwPollEvents();
-    glfwSwapBuffers(m_Window);
+    m_Context->swapBuffers();
 }
 
 void WindowsWindow::setVSync(bool enabled)

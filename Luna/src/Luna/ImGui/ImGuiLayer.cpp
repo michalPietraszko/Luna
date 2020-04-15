@@ -69,6 +69,7 @@ void ImGuiLayer::begin()
 void ImGuiLayer::end()
 {
     ImGuiIO& io = ImGui::GetIO();
+    io.FontGlobalScale = 1.5f;
     auto& app = Application::get();
     io.DisplaySize =
         ImVec2(static_cast<float>(app.getWindow().getWidth()), static_cast<float>(app.getWindow().getHeight()));

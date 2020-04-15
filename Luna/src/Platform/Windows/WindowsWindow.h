@@ -1,8 +1,7 @@
 #pragma once
 
-#pragma once
-
 #include "Luna/Window.h"
+#include "Luna/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
 
@@ -49,6 +48,7 @@ private:
 
 private:
     GLFWwindow* m_Window;
+    GraphicsContext* m_Context;
     WindowData m_Data;
 };
 

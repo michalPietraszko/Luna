@@ -14,7 +14,7 @@ class LUNA_API Window
 public:
     struct WindowProps
     {
-        WindowProps(const std::string& title = "Luna Engine", unsigned int width = 1280, unsigned int height = 720)
+        WindowProps(const std::string& title = "Luna Engine", unsigned int width = 1920, unsigned int height = 1080)
             : title(title), width(width), height(height)
         {
         }
