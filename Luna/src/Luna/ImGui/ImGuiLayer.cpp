@@ -66,6 +66,7 @@ void ImGuiLayer::begin()
     ImGui_ImplGlfw_NewFrame();
     ImGui::NewFrame();
 }
+
 void ImGuiLayer::end()
 {
     ImGuiIO& io = ImGui::GetIO();

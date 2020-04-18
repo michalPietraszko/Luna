@@ -10,7 +10,6 @@ namespace Luna
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
 
 Application* Application::s_Instance = nullptr;
-
 Application::Application() : m_LayerStack{LayerStack::instance()}
 {
     LN_CORE_ASSERT(!s_Instance, "Application already exists!");

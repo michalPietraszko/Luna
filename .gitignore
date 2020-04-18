@@ -3,8 +3,13 @@
 .vscode/
 bin/Debug-windows-x86_64
 bin-int/
+Luna/vendor/Glad/bin/
 
 # Files
 *.user
 *.code-workspace
 *.DS_Store
+*.sln
+*.vcxproj
+*.filters
+*imgui.ini
