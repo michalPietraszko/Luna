@@ -6,6 +6,7 @@
 #include "Luna/Events/ApplicationEvent.h"
 #include "Luna/ImGui/ImGuiLayer.h"
 #include "Window.h"
+#include "Luna/Renderer/Shader.h"
 
 namespace Luna
 {
@@ -34,6 +35,7 @@ private:
 private:
     bool m_Running{true};
     std::unique_ptr<Window> m_Window;
+    std::unique_ptr<Shader> m_Shader;
     ImGuiLayer* m_ImGuiLayer;
     LayerStack& m_LayerStack;
 
