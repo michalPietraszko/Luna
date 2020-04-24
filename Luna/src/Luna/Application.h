@@ -7,6 +7,7 @@
 #include "Luna/ImGui/ImGuiLayer.h"
 #include "Window.h"
 #include "Luna/Renderer/Shader.h"
+#include "Luna/Renderer/Buffer.h"
 
 namespace Luna
 {
@@ -35,15 +36,17 @@ private:
 private:
     bool m_Running{true};
     std::unique_ptr<Window> m_Window;
+
+    unsigned int m_VertexArray;
     std::unique_ptr<Shader> m_Shader;
+    std::unique_ptr<VertexBuffer> m_VertexBuffer;
+    std::unique_ptr<IndexBuffer> m_IndexBuffer;
+
     ImGuiLayer* m_ImGuiLayer;
     LayerStack& m_LayerStack;
 
 private:
     static Application* s_Instance;
-    unsigned int m_VertexArray;
-    unsigned int m_VertexBuffer;
-    unsigned int m_IndexBuffer;
 };
 
 // To be defined in CLIENT
