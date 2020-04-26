@@ -10,8 +10,8 @@ namespace Luna
 class LUNA_API ImGuiLayer : public Layer
 {
 public:
-    ImGuiLayer();
-    ~ImGuiLayer();
+    ImGuiLayer() : Layer("ImGuiLayer") {}
+    ~ImGuiLayer() = default;
 
     virtual void onAttach() override;
     virtual void onDetach() override;

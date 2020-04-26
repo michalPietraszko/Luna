@@ -14,7 +14,7 @@ public:
         return std::make_unique<T>(args...);
     }
     Layer(const std::string& name) : m_DebugName{name} {} // use short names for SSO
-    virtual ~Layer() {}
+    virtual ~Layer() = default;
 
     virtual void onAttach() {}
     virtual void onDetach() {}
