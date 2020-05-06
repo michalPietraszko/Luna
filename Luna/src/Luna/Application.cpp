@@ -11,6 +11,21 @@ namespace Luna
 
 Application* Application::s_Instance = nullptr;
 
+Application::Application() : m_LayerStack{LayerStack::instance()}
+{
+    LN_CORE_ASSERT(!s_Instance, "Application already exists!");
+    s_Instance = this;
+
+    m_Window = std::unique_ptr<Window>(Window::create());
+    m_Window->setEventCallback(BIND_EVENT_FN(onEvent));
+
+    auto temp = std::make_unique<ImGuiLayer>();
+    m_ImGuiLayer = temp.get();
+    pushOverlay(std::move(temp));
+
+    openGLBs();
+}
+
 static GLenum shaderTypeToOpenGLBaseType(ShaderDataType type)
 {
     switch (shaderDataTypeGlType(type))
@@ -25,21 +40,6 @@ static GLenum shaderTypeToOpenGLBaseType(ShaderDataType type)
 
     LN_CORE_ASSERT(false, "Unknown ShaderDataType!");
     return {};
-}
-
-Application::Application() : m_LayerStack{LayerStack::instance()}
-{
-    LN_CORE_ASSERT(!s_Instance, "Application already exists!");
-    s_Instance = this;
-
-    m_Window = std::unique_ptr<Window>(Window::create());
-    m_Window->setEventCallback(BIND_EVENT_FN(onEvent));
-
-    auto temp = std::make_unique<ImGuiLayer>();
-    m_ImGuiLayer = temp.get();
-    pushOverlay(std::move(temp));
-
-    openGLBs();
 }
 
 void Application::openGLBs()
