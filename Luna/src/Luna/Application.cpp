@@ -3,7 +3,7 @@
 
 #include "Luna/Log.h"
 #include "Input.h"
-#include <glad/glad.h>
+#include "Luna/Renderer/Renderer.h"
 
 namespace Luna
 {
@@ -26,22 +26,6 @@ Application::Application() : m_LayerStack{LayerStack::instance()}
     openGLBs();
 }
 
-static GLenum shaderDataTypeToOpenGLBaseType(ShaderDataType type)
-{
-    switch (shaderDataTypeGlType(type))
-    {
-        case BufferHelpers::GlType::glFloat:
-            return GL_FLOAT;
-        case BufferHelpers::GlType::glInt:
-            return GL_INT;
-        case BufferHelpers::GlType::glBool:
-            return GL_BOOL;
-    }
-
-    LN_CORE_ASSERT(false, "Unknown ShaderDataType!");
-    return {};
-}
-
 void Application::openGLBs()
 {
     m_VertexArray.reset(VertexArray::create());
@@ -54,9 +38,6 @@ void Application::openGLBs()
     BufferLayout layout = {{ShaderDataType::Float3, "a_Position"}, {ShaderDataType::Float4, "a_Color"}};
     vertexBuffer->setLayout(layout);
     m_VertexArray->addVertexBuffer(vertexBuffer);
-
-    // glEnableVertexAttribArray(0);
-    // glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
     uint32_t indices[3] = {0, 1, 2};
     std::shared_ptr<IndexBuffer> indexBuffer;
@@ -182,17 +163,18 @@ void Application::run()
 {
     while (m_Running)
     {
-        glClearColor(0.1f, 0.1f, 0.1f, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
+        RenderCommand::setClearColor({0.1f, 0.1f, 0.1f, 1});
+        RenderCommand::clear();
+
+        Renderer::beginScene();
 
         m_BlueShader->bind();
-        m_SquareVA->bind();
-        glDrawElements(GL_TRIANGLES, m_SquareVA->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+        Renderer::submit(m_SquareVA);
 
         m_Shader->bind();
+        Renderer::submit(m_VertexArray);
 
-        m_VertexArray->bind();
-        glDrawElements(GL_TRIANGLES, m_VertexArray->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+        Renderer::endScene();
 
         for (auto&& layer : m_LayerStack)
             layer->onUpdate();

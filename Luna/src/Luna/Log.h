@@ -2,7 +2,6 @@
 #include "Core.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
-
 namespace Luna
 {
 class LUNA_API Log
@@ -25,11 +24,11 @@ private:
 #define LN_CORE_INFO(...) ::Luna::Log::getCoreLogger()->info(__VA_ARGS__)
 #define LN_CORE_WARN(...) ::Luna::Log::getCoreLogger()->warn(__VA_ARGS__)
 #define LN_CORE_ERROR(...) ::Luna::Log::getCoreLogger()->error(__VA_ARGS__)
-#define LN_CORE_FATAL(...) ::Luna::Log::getCoreLogger()->critical(__VA_ARGS__)
+#define LN_CORE_CRITICAL(...) ::Luna::Log::getCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define LN_TRACE(...) ::Luna::Log::getClientLogger()->trace(__VA_ARGS__)
 #define LN_INFO(...) ::Luna::Log::getClientLogger()->info(__VA_ARGS__)
 #define LN_WARN(...) ::Luna::Log::getClientLogger()->warn(__VA_ARGS__)
 #define LN_ERROR(...) ::Luna::Log::getClientLogger()->error(__VA_ARGS__)
-#define LN_FATAL(...) ::Luna::Log::getClientLogger()->critical(__VA_ARGS__)
+#define LN_CRITICAL(...) ::Luna::Log::getClientLogger()->critical(__VA_ARGS__)
